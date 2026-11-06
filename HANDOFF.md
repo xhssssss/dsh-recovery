@@ -101,6 +101,7 @@ GitHub 账号：xhssssss
   - a0ec401 初始公开：0.8.6 原版、悬浮窗改版、0.9.10
   - 3d59bab 新增声音开关与边栏合并开关
   - 78ee20e 补充前置条件与“重启插件不是运行依赖”
+  - 9378e0f 把声音配置放在 extra-args 桥之前，避免环境变量覆盖
 - dsh-recovery：
   - 5f46e51 加入交接文档；cdeff41 移除 versions/，只留恢复文档、配置和永久修复脚本
 - dsh-setting-restart-patched：
