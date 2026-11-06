@@ -1986,6 +1986,8 @@ window.__ModuleLoader__.load({
 			} catch (e) {
 				betterSidebarService = void 0;
 			}
+			// EGO_FORCE_FLOATING_PATCH: always use the floating watch panel, even when dsh-better-sidebar is installed.
+			betterSidebarService = void 0;
 			if (betterSidebarService !== void 0) ctx.effect(() => mountSidebarTab(ctx, betterSidebarService), "ego-browser sidebar tab");
 			else {
 				var disposeFloating = null;
@@ -1999,7 +2001,7 @@ window.__ModuleLoader__.load({
 						}
 					};
 				}, "ego-browser watch panel");
-				if (typeof ctx.inject === "function") ctx.inject(["betterSidebar"], function(sidebarCtx) {
+				if (false) ctx.inject(["betterSidebar"], function(sidebarCtx) {
 					var svc;
 					try {
 						svc = typeof sidebarCtx.get === "function" ? sidebarCtx.get("betterSidebar") : sidebarCtx.betterSidebar;
