@@ -12,6 +12,7 @@
     dsh-setting-restart 改版：私有仓库，不在本公开仓库
     profile/cordis.patch.yml       当前可用的 patch 层（含 vision-router 修复、自动审批、皮肤禁用）
     profile/package.json           当前 profile 的插件清单（参考用）
+    HANDOFF.md                     给下一位执行者的交接说明
     scripts/apply-permanent-fixes.ps1  一键重打 ego + vision 补丁
     docs/ROOT-CAUSE-webRuntime.md  webRuntime 启动失败的根因与修复
 
