@@ -137,12 +137,28 @@ dsh-approval-gate 0.5.0 需要 permission 预设。profile/cordis.patch.yml 已�
 
 ## 上传到 GitHub
 
-本目录已经 git init 并提交。没有配置你的 GitHub 账号，所以没有自动 push。你在本目录执行：
+本目录已经 git init 并提交。没有配置你的 GitHub 账号，所以没有自动 push。
 
-    git remote add origin https://github.com/<你的账号>/<仓库名>.git
-    git push -u origin main
+已在 3081 端口实测悬浮窗：
 
-如果仓库是私有的，先确认本机 Git Credential Manager 已登录。
+- document.getElementById('dsh-ego-fab') 可见
+- document.getElementById('dsh-ego-panel') 存在
+- 没有 ego 侧栏节点
+
+本目录执行：
+
+    powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\publish-to-github.ps1 -RepoName dsh-recovery -Visibility private
+
+脚本会：
+
+1. 检查 gh 登录；
+2. 未登录时打开 Edge 做 GitHub device authorization；
+3. 创建私有仓库 dsh-recovery 并 push main。
+
+如果不想用脚本，也可以：
+
+    gh auth login --web --hostname github.com --git-protocol https
+    gh repo create dsh-recovery --private --source . --remote origin --push
 
 ## 已验证
 
