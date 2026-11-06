@@ -10,10 +10,9 @@
 
     dsh-ego-browser 悬浮窗改版：https://github.com/xhssssss/dsh-ego-browser-floating
     dsh-setting-restart 改版：私有仓库，不在本公开仓库
-    （dsh-setting-restart 改版单独私有备份，不在本公开仓库）
     profile/cordis.patch.yml       当前可用的 patch 层（含 vision-router 修复、自动审批、皮肤禁用）
     profile/package.json           当前 profile 的插件清单（参考用）
-    scripts/apply-permanent-fixes.ps1  一键重打所有补丁
+    scripts/apply-permanent-fixes.ps1  一键重打 ego + vision 补丁
     docs/ROOT-CAUSE-webRuntime.md  webRuntime 启动失败的根因与修复
 
 ## agent 浏览器悬浮窗版
