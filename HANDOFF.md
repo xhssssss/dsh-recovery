@@ -102,7 +102,7 @@ GitHub 账号：xhssssss
   - 3d59bab 新增声音开关与边栏合并开关
   - 78ee20e 补充前置条件与“重启插件不是运行依赖”
 - dsh-recovery：
-  - cdeff41 移除 versions/，只留恢复文档、配置和永久修复脚本
+  - 5f46e51 加入交接文档；cdeff41 移除 versions/，只留恢复文档、配置和永久修复脚本
 - dsh-setting-restart-patched：
   - fba5b21 私有仓库初始提交
   - Release v1.0.0-patched 带 zip
