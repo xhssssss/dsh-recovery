@@ -137,7 +137,7 @@ dsh-approval-gate 0.5.0 需要 permission 预设。profile/cordis.patch.yml 已�
 
 ## 上传到 GitHub
 
-本目录已经 git init 并提交。没有配置你的 GitHub 账号，所以没有自动 push。
+本仓库已推送到 https://github.com/xhssssss/dsh-recovery （private）。
 
 已在 3081 端口实测悬浮窗：
 
@@ -155,7 +155,7 @@ dsh-approval-gate 0.5.0 需要 permission 预设。profile/cordis.patch.yml 已�
 2. 未登录时打开 Edge 做 GitHub device authorization；
 3. 创建私有仓库 dsh-recovery 并 push main。
 
-如果不想用脚本，也可以：
+如果以后要在另一台机器重建，也可以：
 
     gh auth login --web --hostname github.com --git-protocol https
     gh repo create dsh-recovery --private --source . --remote origin --push
