@@ -44,14 +44,19 @@ function Copy-TreeIfChanged([string]$sourceRoot, [string]$targetRoot, [string]$b
 Write-Host "== DSH permanent fixes =="
 Write-Host "Profile: $ProfileDir"
 
-# 1. ego-browser 0.8.6 patched
+# 1. ego-browser 0.8.6 patched (canonical repo: dsh-ego-browser-floating)
 if (-not $SkipEgo) {
   $egoTarget = Join-Path $ProfileDir 'node_modules\dsh-ego-browser'
-  if (Test-Path -LiteralPath $egoTarget) {
+  $egoSource = Join-Path $RepoDir 'versions\0.8.6\patched'
+  if (-not (Test-Path -LiteralPath $egoSource)) {
+    $egoSource = Join-Path (Split-Path $RepoDir -Parent) 'dsh-ego-browser-floating\0.8.6\patched'
+  }
+  if ((Test-Path -LiteralPath $egoTarget) -and (Test-Path -LiteralPath $egoSource)) {
     Write-Host "[1/4] ego-browser 0.8.6 patch"
-    $egoSource = Join-Path $RepoDir 'versions\0.8.6\patched'
     $egoBackup = Join-Path $egoTarget ('.patch-backups\' + $stamp)
     Copy-TreeIfChanged $egoSource $egoTarget $egoBackup
+  } elseif (-not (Test-Path -LiteralPath $egoSource)) {
+    Write-Host "[1/4] SKIP: clone dsh-ego-browser-floating next to this repo"
   } else {
     Write-Host "[1/4] SKIP: dsh-ego-browser is not installed"
   }

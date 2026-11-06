@@ -4,39 +4,27 @@
 
 这个仓库用于恢复 DeepSeek Harness（DSH）在 2026-11-06 重装后的一套可用环境，并记录两个会反复出现的启动问题。
 
-重点不是“备份全部插件”，而是把**改过的插件版本、补丁、以及 vision-router 的启动修复**放在一起，避免下次重建 profile 后又踩同一个坑。
+重点不是“备份全部插件”，而是记录 **vision-router 的启动修复和恢复步骤**。改过的插件单独放在公开仓库 dsh-ego-browser-floating。
 
 ## 目录
 
-    versions/0.8.6/original-0.8.6   官方 dsh-ego-browser 0.8.6 原文件
-    versions/0.8.6/patched          改版文件：静音、屏外后台、Google 登录修复
-    versions/0.8.6/reapply-patch.ps1 应用/回滚脚本
-    versions/0.9.10/                官方最新 0.9.10 tarball（当前不使用）
+    dsh-ego-browser 悬浮窗改版：https://github.com/xhssssss/dsh-ego-browser-floating
+    dsh-setting-restart 改版：私有仓库，不在本公开仓库
     （dsh-setting-restart 改版单独私有备份，不在本公开仓库）
     profile/cordis.patch.yml       当前可用的 patch 层（含 vision-router 修复、自动审批、皮肤禁用）
     profile/package.json           当前 profile 的插件清单（参考用）
     scripts/apply-permanent-fixes.ps1  一键重打所有补丁
     docs/ROOT-CAUSE-webRuntime.md  webRuntime 启动失败的根因与修复
 
-## 三个 agent 浏览器版本
+## agent 浏览器悬浮窗版
 
-| 版本 | 位置 | 说明 |
-|---|---|---|
-| 0.8.6 官方原版 | versions/0.8.6/original-0.8.6 | 未改动的对照版本 |
-| 0.8.6 改版 | versions/0.8.6/patched | **当前要用的悬浮窗版**：强制浮动观察窗（即使装了 better-sidebar 也不切右侧栏）；静音、屏外后台、保留弹出窗口、Google 登录修复 |
-| 0.9.10 官方最新 | versions/0.9.10/dsh-ego-browser-0.9.10.tgz | 仅存档，不建议直接替换；它没有 0.8.6 改版的静音/后台逻辑 |
+已拆到独立公开仓库：
 
-注意：0.9.10 是官方新版，但没有本仓库的改版补丁；如果以后要升 0.9.10，需要重新移植补丁，不能只换版本。
+    https://github.com/xhssssss/dsh-ego-browser-floating
 
-### 悬浮窗补丁
+里面有 0.8.6 官方原版、0.8.6 悬浮窗改版、0.9.10 官方 tarball，以及 apply.ps1。
 
-0.8.6 原版在检测到 dsh-better-sidebar 时会自动把观察窗挂到右侧栏。要让 agent 浏览器保持**悬浮观察球/悬浮窗**，patched/lib/client.js 里加了：
-
-    // EGO_FORCE_FLOATING_PATCH
-    betterSidebarService = void 0;
-    if (false) ctx.inject(["betterSidebar"], ...)
-
-效果：better-sidebar 仍然可以正常用，但 ego-browser 不再切到侧栏，始终使用浮动观察窗。
+本仓库的 scripts/apply-permanent-fixes.ps1 会优先从同级目录的 dsh-ego-browser-floating 取补丁；找不到就跳过，不会报错。
 
 ## 永久性处理：vision-router 的 webRuntime 启动失败
 
