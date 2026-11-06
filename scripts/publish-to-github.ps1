@@ -3,7 +3,7 @@ param(
   [string]$RepoName = "dsh-recovery",
   [ValidateSet("private","public")][string]$Visibility = "private"
 )
-$ErrorActionPreference = 'Stop'
+$ErrorActionPreference = 'Continue'
 $gh = "C:\Program Files\GitHub CLI\gh.exe"
 if (-not (Test-Path -LiteralPath $gh)) { throw "gh not found at $gh; install GitHub CLI first" }
 $repo = Split-Path $PSScriptRoot -Parent
