@@ -12,7 +12,7 @@
     versions/0.8.6/patched          改版文件：静音、屏外后台、Google 登录修复
     versions/0.8.6/reapply-patch.ps1 应用/回滚脚本
     versions/0.9.10/                官方最新 0.9.10 tarball（当前不使用）
-    patches/setting-restart/        dsh-setting-restart 1.0.0 的 typert + relaunch-safe 补丁
+    （dsh-setting-restart 改版单独私有备份，不在本公开仓库）
     profile/cordis.patch.yml       当前可用的 patch 层（含 vision-router 修复、自动审批、皮肤禁用）
     profile/package.json           当前 profile 的插件清单（参考用）
     scripts/apply-permanent-fixes.ps1  一键重打所有补丁
@@ -80,15 +80,23 @@
 脚本会：
 
 - 重打 dsh-ego-browser 0.8.6 的 7 个改版文件；
-- 重打 dsh-setting-restart 的 typert.host.js / relaunch-safe.js 等；
 - 在 cordis.patch.yml 末尾补 vision-router 的 webStartup override（幂等）；
-- 把 dsh-setting-restart 加回 dsh.profile.bundles；
 - 不删除任何东西，改动前写 .patch-backups。
 
 执行后重启：
 
     Ctrl+C 停掉当前 dsh web
     npx @deepseek-ai/dsh web
+
+## 设置重启插件（私有）
+
+dsh-setting-restart 1.0.0 的 typert create() 与 relaunch-safe 补丁已经单独放在私有仓库：
+
+- 仓库：xhssssss/dsh-setting-restart-patched（private）
+- 发布：v1.0.0-patched，带 dsh-setting-restart-patched.zip
+- 本公开仓库不包含它的补丁文件
+
+本仓库的 apply-permanent-fixes.ps1 只处理 ego-browser 和 vision-router；重启插件请用私有仓库里的 scripts/apply.ps1。
 
 ## 当前插件版本
 

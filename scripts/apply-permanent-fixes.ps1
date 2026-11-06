@@ -57,14 +57,16 @@ if (-not $SkipEgo) {
   }
 }
 
-# 2. setting-restart patch files
+# 2. setting-restart patch files (kept in a separate private repo)
 if (-not $SkipRestart) {
   $srTarget = Join-Path $ProfileDir 'node_modules\dsh-setting-restart'
-  if (Test-Path -LiteralPath $srTarget) {
+  $srSource = Join-Path $RepoDir 'patches\setting-restart'
+  if ((Test-Path -LiteralPath $srTarget) -and (Test-Path -LiteralPath $srSource)) {
     Write-Host "[2/4] setting-restart patch"
-    $srSource = Join-Path $RepoDir 'patches\setting-restart'
     $srBackup = Join-Path $srTarget ('.patch-backups\' + $stamp)
     Copy-TreeIfChanged $srSource $srTarget $srBackup
+  } elseif (-not (Test-Path -LiteralPath $srSource)) {
+    Write-Host "[2/4] SKIP: setting-restart patch is in the separate private repo"
   } else {
     Write-Host "[2/4] SKIP: dsh-setting-restart is not installed"
   }
