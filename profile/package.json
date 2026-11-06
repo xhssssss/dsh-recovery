@@ -1,0 +1,57 @@
+{
+  "name": "dsh-profile-web",
+  "private": true,
+  "dependencies": {
+    "@deepseek-ai/dsh-invariants": "0.1.0-rc.6",
+    "@jieai/dsh-plugin-vet": "0.3.18",
+    "@linxin666/dsh-web-all": "0.4.5",
+    "@liustack/modsearch": "5.10.6",
+    "@lyhalal/dsh-notification-center": "0.1.35",
+    "@nanmicoder/dsh-agent-teams": "0.1.29",
+    "dsh-approval-gate": "0.5.0",
+    "dsh-better-sidebar": "0.30.1",
+    "dsh-client-auto-continue": "0.14.2",
+    "dsh-config-manager": "^0.4.2",
+    "dsh-context": "0.56.2",
+    "dsh-ego-browser": "0.8.6",
+    "dsh-mnemon": "0.5.25",
+    "dsh-secure-audit": "0.2.10",
+    "dsh-session-sync": "0.2.26",
+    "dsh-setting-restart": "1.0.0",
+    "dsh-vision-router": "2.3.0",
+    "dsh-whale-widget": "0.3.15",
+    "dsh-workspace-session-drag": "link:C:\\恢复中转\\dsh-plugins\\dsh-workspace-session-drag",
+    "dshmarket": "1.66.14"
+  },
+  "dsh": {
+    "profile": {
+      "bundles": [
+        "@deepseek-ai/dsh-base",
+        "@deepseek-ai/dsh-web-app",
+        "dsh-config-manager",
+        "dsh-workspace-session-drag",
+        "dsh-ego-browser",
+        "@jieai/dsh-plugin-vet",
+        "@liustack/modsearch",
+        "@lyhalal/dsh-notification-center",
+        "dsh-approval-gate",
+        "dsh-better-sidebar",
+        "dsh-client-auto-continue",
+        "dsh-context",
+        "dsh-mnemon",
+        "dsh-secure-audit",
+        "dsh-session-sync",
+        "dsh-vision-router",
+        "dsh-whale-widget",
+        "dshmarket",
+        "@nanmicoder/dsh-agent-teams",
+        "@deepseek-ai/dsh-experimental-agent-team-profile",
+        "@deepseek-ai/dsh-experimental-auto-review",
+        "@deepseek-ai/dsh-experimental-voice-input-bundle",
+        "dsh-setting-restart",
+        "@deepseek-ai/dsh-experimental-session-titles-bundle"
+      ],
+      "patchReload": "live"
+    }
+  }
+}

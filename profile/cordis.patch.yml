@@ -1,0 +1,63 @@
+# Your patch layer for this dsh profile, applied after every bundle layer:
+# a top-level YAML array of loader patch entries (id-targeted config
+# overrides, disables, and insert lists; `!!js` expressions allowed).
+- id: ui-settings-general
+  name: "@deepseek-ai/dsh-client-ui-settings-general"
+  config:
+    welcomeNoticeVersion: 2026-09-28.1
+- id: agent-default-model
+  name: "@deepseek-ai/dsh-agent-default-model"
+  config:
+    provider: deepseek-official
+    model: deepseek-flash
+    reasoningEffort: max
+- id: web-ui-pet
+  name: "@linxin666/dsh-pet"
+  config:
+    visible: true
+    size: 160
+    right: 120
+    bottom: 446
+    petId: whale-girl
+# 用户明确说皮肤中心没用，禁用；web-all 自带的 0.4.15 也不会显示。
+- id: web-ui-skin-center
+  disabled: true
+# 自动审批（dsh-approval-gate）需要的权限预设。
+- id: permission
+  name: '@deepseek-ai/dsh-permission-presets'
+  config:
+    presets:
+      read-only:
+        sandbox: read-only
+        approval: ask
+      workspace-write:
+        sandbox: workspace-write
+        approval: ask
+      danger-full-access:
+        sandbox: danger-full-access
+        approval: never
+      auto-approve:
+        sandbox: workspace-write
+        approval: ask
+        name: 自动审批（Flash）
+        description: Flash 预判写入/命令是否不可回补：安全自动批准，有风险转人工审批。
+
+# 修复 dsh-vision-router 2.3.0 在 DSH 0.2.1+ 上的启动失败：
+# 2.3.0 把 connection 行 inject 改成 [webRuntime, webServer]，
+# 而 0.2.1 起宿主把 webRuntime 改名为 webStartup，connection 会永远 pending。
+- id: modules
+  name: '@deepseek-ai/dsh-client-modules'
+- id: connection
+  name: '@deepseek-ai/dsh-client-connection'
+  inject: [ webStartup ]
+  config:
+    trustedHosts: !!js ctx.webStartup.trustedHosts
+- id: subagent-model-selection-settings
+  name: "@deepseek-ai/dsh-tool-subagent/model-selection-settings"
+  config:
+    enabled: true
+    allowedModels:
+      - provider: deepseek-official
+        model: deepseek-flash
+      - provider: deepseek-vision
+        model: deepseek-flash
